@@ -14,7 +14,6 @@ public class WikiHowParser {
             }
         }
         String urlSuffix = new String(suffix);
-        System.out.println(urlSuffix);
         JSoupParser jSoupParser = new JSoupParser("https://www.wikihow.com/wikiHowTo?search=" + urlSuffix);
         
     }
