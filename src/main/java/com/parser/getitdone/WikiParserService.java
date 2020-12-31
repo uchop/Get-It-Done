@@ -6,33 +6,32 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import java.util.ArrayList;
+import org.springframework.stereotype.Service;
 
+@Service
+public class WikiParserService {
 
-public class WikiParser {
-    private String searchBarURL;
-    private String targetURL;
-
-    //constructor which locates correct URL based on user's input
-    public WikiParser(String URL) {
-        String searchBarURL = URL;
-         
+    //finds the target URL to scrape by entering user input into search bar
+    public String findTargetURL(String searchBarURL) {
+        String resultURL = "";
         try {
             Document doc = Jsoup.connect(searchBarURL).get();
             Element resultLink = doc.select("a.result_link").first();
-            this.targetURL = resultLink.attr("abs:href");
-            System.out.println(targetURL);
+            resultURL = resultLink.attr("abs:href");
+            System.out.println(resultURL);
             
         }
         catch (IOException e) {
             e.printStackTrace();
         }
+        return resultURL;
     }
 
     //parse the target URL to retrieve data relevant to user goal
-    public ArrayList<String> scrapeTargetURL() {
+    public ArrayList<String> scrapeTargetURL(String URL) {
         ArrayList<String> parsedData = new ArrayList<String>();
         try {
-            Document document = Jsoup.connect(this.targetURL).get();
+            Document document = Jsoup.connect(URL).get();
             Elements data = document.select("div.step");
             cleanUp(data);
             for (Element d: data) {
