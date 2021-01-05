@@ -18,11 +18,17 @@ export default class GetResults extends React.Component {
   handleSubmit = (event) => {
     event.preventDefault();
     let userSearch = this.state.value;
-    axios.get(`http://localhost:8080/parser`, {params: {userSearch}})
+    if (userSearch === "") {
+        alert("Please do not enter an empty field!");
+    }
+    else {
+        axios.get(`http://localhost:8080/parser`, {params: {userSearch}})
         .then(res => {
-        const goals = res.data;
-        this.setState({ goals });
+            const goals = res.data;
+            this.setState({ goals });
         })
+    }
+    
   }
 
   render() {
@@ -35,9 +41,9 @@ export default class GetResults extends React.Component {
                     <input type="submit" value="Submit"/>
                 </form>
                 
-                <ul>
+                <ol>
                     { this.state.goals.map(goal => <li>{goal}</li>) }
-                </ul>               
+                </ol>               
             </div>
         </body>
         
