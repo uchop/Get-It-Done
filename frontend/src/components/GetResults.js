@@ -23,18 +23,10 @@ export default class GetResults extends React.Component {
       var i;
       for (i = 0; i < this.state.goals.length; i++) {
           var firstPeroid = this.state.goals[i].indexOf('.');
-        //   console.log(firstPeroid);
           finalGoals.firstSent.push(this.state.goals[i].slice(0,firstPeroid + 1));
           finalGoals.remainder.push(this.state.goals[i].slice(firstPeroid + 1));
-        //   console.log(finalGoals);
       }
-    //   console.log(finalGoals);
       this.setState({finalGoals});
-    console.log(this.state.finalGoals);
-  }
-
-  handleChange = (event) => {
-      this.setState({value: event.target.value});
   }
 
   handleSubmit = (event) => {
@@ -47,11 +39,15 @@ export default class GetResults extends React.Component {
         axios.get(`http://localhost:8080/parser`, {params: {userSearch}})
         .then(res => {
             const goals = res.data;
-            this.setState({ goals });
+            this.setState({ goals }, this.spliceString);
         })
     }
-    this.spliceString();    
   }
+
+  handleChange = (event) => {
+    this.setState({value: event.target.value});
+}
+
 
   render() {
     return (
