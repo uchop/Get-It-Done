@@ -7,8 +7,30 @@ export default class GetResults extends React.Component {
       super(props);
       this.state = {
         goals: [],
+        finalGoals: {
+            firstSent: [],
+            remainder: []
+        },
         value: ""
       }
+  }
+
+  spliceString = () => {
+    var finalGoals = {
+        firstSent: [],
+        remainder: []
+    };
+      var i;
+      for (i = 0; i < this.state.goals.length; i++) {
+          var firstPeroid = this.state.goals[i].indexOf('.');
+        //   console.log(firstPeroid);
+          finalGoals.firstSent.push(this.state.goals[i].slice(0,firstPeroid + 1));
+          finalGoals.remainder.push(this.state.goals[i].slice(firstPeroid + 1));
+        //   console.log(finalGoals);
+      }
+    //   console.log(finalGoals);
+      this.setState({finalGoals});
+    console.log(this.state.finalGoals);
   }
 
   handleChange = (event) => {
@@ -28,7 +50,7 @@ export default class GetResults extends React.Component {
             this.setState({ goals });
         })
     }
-    
+    this.spliceString();    
   }
 
   render() {
@@ -40,9 +62,14 @@ export default class GetResults extends React.Component {
                     <input type='text' id='input' value= {this.state.value} onChange={this.handleChange}></input>
                     <input type="submit" value="Submit"/>
                 </form>
-                
                 <ol>
-                    { this.state.goals.map(goal => <li>{goal}</li>) }
+                    {/* { this.state.goals.map(goal => 
+                    <li>{goal}</li>) } */}
+                    {this.state.finalGoals.firstSent.map((fs, index) =>
+                        <li>
+                            <h3>{fs}</h3>
+                            <p>{this.state.finalGoals.remainder[index]}</p>
+                        </li>)}
                 </ol>               
             </div>
         </body>

@@ -4,14 +4,13 @@ input[type="text"] {
     margin-bottom: 10px;
     padding: 5px 5px 5px 5px;
     border: 1px solid rgba(0,0,0,.5);
-    background: rgba(0,0,0,.25);
     -webkit-transition: 0.5s;
     transition: 0.5s;
     color:darkkhaki;
   }
 
 input[type=text]:focus {
-    background-color: black;
+    background-color: darkslateblue;
 }
 
 input {
@@ -25,12 +24,71 @@ form {
 }
 
 body {
-    background-color: rgba(22, 21, 21, 0.61);
+    /* background-color: rgba(22, 21, 21, 0.61); */
+    background-color: black;
 }
 
+/* List */
+ol {
+    counter-reset: index;  
+    padding: 0;
+  }
+
+/* List element */
 li {
     color: antiquewhite;
+    counter-increment: index; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-right: 1em;
+    box-sizing: border-box;
+    background: #5f0cfaad;
+    margin-bottom: 15px;
+    border-radius: 2em;
 }
+
+h3 {
+    position: relative;
+    padding-bottom: 10px;
+}
+  
+h3:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: white;
+}
+
+p {
+    margin-top: 15px;
+    text-align: left;
+    padding-left: 10px;
+}
+
+/* Element counter */
+li::before {
+    content: counters(index, ".", decimal-leading-zero);
+    font-size: 1.5rem;
+    text-align: right;
+    font-weight: bold;
+    min-width: 50px;
+    padding-right: 12px;
+    font-variant-numeric: tabular-nums;
+    align-self: flex-start;
+    background-image: linear-gradient(to bottom, aquamarine, orangered);
+    background-attachment: fixed;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  /* Element separation */
+li + li {
+    border-top: 1px solid rgba(255,255,255,0.2);
+  }
 
 input[type="submit"] {
     display: inline-block;
@@ -48,6 +106,6 @@ input[type="submit"] {
 }
 
 input[type="submit"]:hover {
-    background-color: black;
+    background-color: darkblue;
     color: white;
   }
