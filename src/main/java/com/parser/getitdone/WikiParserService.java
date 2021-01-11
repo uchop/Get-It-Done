@@ -18,6 +18,11 @@ public class WikiParserService {
             Document doc = Jsoup.connect(searchBarURL).get();
             Element resultLink = doc.select("a.result_link").first();
             resultURL = resultLink.attr("abs:href");
+            if (resultURL.contains("Category")) {
+                Document categoryDoc = Jsoup.connect(resultURL).get();
+                Element categoryURL = categoryDoc.select("div.cat_section a[href]").first();
+                resultURL = categoryURL.attr("abs:href");
+            }
             System.out.println(resultURL);
             
         }
