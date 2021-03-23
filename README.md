@@ -7,7 +7,19 @@ Tech Stack:<br>
     <li>API ENDPOINTS: Spring Framework</li><br>
     <li>FRONTEND: Javascript & React-Boostrap library</li><br>
   </ul>
-  
+
+How To Run the Application:<br>
+<ol>
+  <li>Navigate to the frontend directory and run the following commands:
+    <li>`npm install package.json` To install the necessary frontend dependencies</li>
+    <li>`npm start` To run the frontend on localhost</li>
+  </li>
+  <li>Navigate to project root directory in a separate terminal and run these commands:
+    <li>`mvn package` To build and compile the project</li>
+    <li>`java -jar target/myproject-0.0.1-SNAPSHOT.jar` Creates an executable jar file for the project (only needs to be done once)</li>
+    <li>`mvn spring-boot:run` To run the backend on localhost</li>
+  </li>
+</ol>
 
 ![ezgif com-gif-maker](https://user-images.githubusercontent.com/65323408/111387446-f7fadb80-866a-11eb-99e3-7bc34a2e95ec.gif)
 
